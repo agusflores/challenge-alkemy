@@ -20,9 +20,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("user/")
 public class UserController {
-
     public String token;
-
     @Autowired
     private UserService service;
 
