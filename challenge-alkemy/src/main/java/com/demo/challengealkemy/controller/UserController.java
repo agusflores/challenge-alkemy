@@ -34,10 +34,11 @@ public class UserController {
         if (service.emailExists(userDTO.getEmail())) {
             return ApiHelper.emailExistsResponse();
         }
-        User user = service.saveUser(ApiHelper.registerUserDtoToEntity(userDTO));
-        if (user == null) {
+        User u = service.saveUser(ApiHelper.registerUserDtoToEntity(userDTO));
+        if (u == null) {
             return ApiHelper.notRegisteredUser();
         }
+        this.token = JwtUtils.generateToken(u.getEmail());
         return ApiHelper.registeredUser();
     }
 
