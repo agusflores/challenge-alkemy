@@ -7,14 +7,11 @@ import com.demo.challengealkemy.helper.CryptoUtils;
 import com.demo.challengealkemy.helper.JwtUtils;
 import com.demo.challengealkemy.helper.ResponseBase;
 import com.demo.challengealkemy.model.User;
-import com.demo.challengealkemy.service.UserService;
-import org.apache.coyote.Response;
+import com.demo.challengealkemy.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
