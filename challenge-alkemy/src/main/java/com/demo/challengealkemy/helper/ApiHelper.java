@@ -3,9 +3,10 @@ package com.demo.challengealkemy.helper;
 import com.demo.challengealkemy.dto.user.LoginUserDTO;
 import com.demo.challengealkemy.dto.user.RegisterUserDTO;
 import com.demo.challengealkemy.model.User;
-import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 public class ApiHelper {
 
     public static ResponseEntity<ResponseBase> badRequestRegisterResponse() {
@@ -49,7 +50,7 @@ public class ApiHelper {
     }
 
     public static User registerUserDtoToEntity(RegisterUserDTO dto) throws Exception {
-        dto.setPassword(CryptoUtils.encrypt(dto.getPassword()));
+        dto.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         return new User(dto);
     }
 }
