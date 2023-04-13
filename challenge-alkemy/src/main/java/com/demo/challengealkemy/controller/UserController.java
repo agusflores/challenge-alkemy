@@ -23,7 +23,7 @@ public class UserController {
 
     @PermitAll
     @PostMapping("/register")
-    public ResponseEntity<ResponseBase> createUser(@RequestBody RegisterUserDTO userDTO) throws Exception {
+    public ResponseEntity<ResponseBase> createUser(@RequestBody RegisterUserDTO userDTO) {
         if (ApiHelper.validateRegisterRequest(userDTO)) {
             return ApiHelper.badRequestRegisterResponse();
         }
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseBase> logUser(@RequestBody LoginUserDTO userDTO) throws Exception {
+    public ResponseEntity<ResponseBase> logUser(@RequestBody LoginUserDTO userDTO) {
         if (ApiHelper.validateLoginRequest(userDTO)) {
             return ApiHelper.badRequestLoginResponse();
         }

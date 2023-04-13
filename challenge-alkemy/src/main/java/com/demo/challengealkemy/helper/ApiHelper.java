@@ -49,7 +49,7 @@ public class ApiHelper {
         return (userDTO.getEmail() == null || userDTO.getPassword() == null);
     }
 
-    public static User registerUserDtoToEntity(RegisterUserDTO dto) throws Exception {
+    public static User registerUserDtoToEntity(RegisterUserDTO dto)  {
         dto.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         return new User(dto);
     }
