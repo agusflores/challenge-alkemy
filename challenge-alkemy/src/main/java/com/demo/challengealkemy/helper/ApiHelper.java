@@ -1,11 +1,16 @@
 package com.demo.challengealkemy.helper;
 
+import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.dto.user.LoginUserDTO;
 import com.demo.challengealkemy.dto.user.RegisterUserDTO;
+import com.demo.challengealkemy.model.Icon;
 import com.demo.challengealkemy.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApiHelper {
 
@@ -43,6 +48,14 @@ public class ApiHelper {
     }
     public static boolean validateRegisterRequest(RegisterUserDTO userDTO) {
         return (userDTO.getName() == null || userDTO.getAddress() == null || userDTO.getEmail() == null || userDTO.getPassword() == null);
+    }
+
+    public static List<IconDTO> IconEntityToIconDTO(List<Icon> list) {
+        List<IconDTO> listIconsDTO = new ArrayList<>();
+        list.stream().forEach(i -> {
+            listIconsDTO.add(new IconDTO(i.getImage(), i.getDenomination()));
+        });
+        return listIconsDTO;
     }
 
     public static boolean validateLoginRequest(LoginUserDTO userDTO) {

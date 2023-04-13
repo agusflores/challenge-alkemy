@@ -13,5 +13,5 @@ public interface UserService {
     Optional<User> getUserByEmailAndPassword(String email, String password);
     Boolean emailExists(String email);
     User saveUser(User u);
-    boolean deleteByUser(Long id);
+    boolean deleteById(Long id);
 }
