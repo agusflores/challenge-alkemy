@@ -12,5 +12,7 @@ public interface IconService {
     List<Icon> getAllIcons();
     Optional<Icon> getIconById(Long id);
     ResponseBase createIcon(CreateIconDTO iconDTO);
+    ResponseBase updateIcon(Long iconId, CreateIconDTO iconDTO);
+
     boolean deleteById(Long id);
 }

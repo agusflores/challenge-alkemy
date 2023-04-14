@@ -30,4 +30,9 @@ public class IconController {
         return service.createIcon(iconDTO);
     }
 
+    @PutMapping("/update-icon/{id}")
+    public ResponseBase updateIcon(@PathVariable Long id, @RequestBody CreateIconDTO iconDTO) {
+        return service.updateIcon(id, iconDTO);
+    }
+
 }

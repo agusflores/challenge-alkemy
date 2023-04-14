@@ -83,11 +83,11 @@ public class Icon {
         this.height = height;
     }
 
-    public String getWeight() {
+    public String getHistory() {
         return history;
     }
 
-    public void setWeight(String history) {
+    public void setHistory(String history) {
         this.history = history;
     }
 

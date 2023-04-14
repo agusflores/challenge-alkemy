@@ -16,6 +16,8 @@ import java.util.List;
 
 public class ApiHelper {
 
+    //--------------------------------- ARMAR RESPONSES ---------------------------------
+
     public static ResponseEntity<ResponseBase> badRequestRegisterResponse() {
         ResponseBase response = new ResponseBase("Faltan datos para poder registrar un nuevo usuario", "ERROR");
         return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
@@ -49,6 +51,11 @@ public class ApiHelper {
         return new ResponseEntity<ResponseBase>(response, HttpStatus.OK);
     }
 
+    public static ResponseEntity<ResponseBase> iconUpdated() {
+        ResponseBase response = new ResponseBase("El icono se ha actualizado correctamente", "OK");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.OK);
+    }
+
     public static ResponseEntity<ResponseBase> notLoggedUser() {
         ResponseBase response = new ResponseBase("Los datos ingresados son incorrectos. Por favor, volver a intentarlo", "ERROR");
         return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
@@ -63,6 +70,13 @@ public class ApiHelper {
         ResponseBase response = new ResponseBase("La ciudad ingresada es incorrecta. Por favor, volver a intentarlo", "ERROR");
         return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
     }
+
+    public static ResponseEntity<ResponseBase> invalidIconId() {
+        ResponseBase response = new ResponseBase("El Icono Geografico ingresado es incorrecto. Por favor, volver a intentarlo", "ERROR");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    //--------------------------------- VALIDAR REQUESTS ---------------------------------
 
     public static boolean validateRegisterRequest(RegisterUserDTO userDTO) {
         return (userDTO.getName() == null || userDTO.getAddress() == null || userDTO.getEmail() == null || userDTO.getPassword() == null);
@@ -80,6 +94,8 @@ public class ApiHelper {
                 || iconDTO.getHistory() == null
                 || iconDTO.getCityId() == null);
     }
+
+    //--------------------------------- MAPPERS ---------------------------------
 
     public static List<IconDTO> IconEntityToIconDTO(List<Icon> list) {
         List<IconDTO> listIconsDTO = new ArrayList<>();
