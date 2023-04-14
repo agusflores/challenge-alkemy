@@ -49,29 +49,30 @@ public class IconServiceImpl implements IconService {
 
     @Override
     public ResponseBase updateIcon(Long iconId, CreateOrUpdateIconDTO iconDTO) {
+        if (ApiHelper.validateCreateIconRequest(iconDTO)) {
+            return ApiHelper.invalidUpdateIconRequest().getBody();
+        }
         Optional<City> c = cityRepository.findById(iconDTO.getCityId());
         if (!c.isPresent()) {
             return ApiHelper.invalidCityId().getBody();
         }
-
         Optional<Icon> i = repository.findById(iconId);
-
         if (!i.isPresent()) {
             return ApiHelper.invalidIconId().getBody();
         }
+
         Icon iconExists = i.get();
-        iconExists.setImage(iconDTO.getImage());
-        iconExists.setDenomination(iconDTO.getDenomination());
-        iconExists.setCreation(iconDTO.getCreation());
-        iconExists.setHeight(iconDTO.getHeight());
-        iconExists.setHistory(iconDTO.getHistory());
-        iconExists.setCity(c.get());
-        repository.save(iconExists);
+        repository.save(ApiHelper.updateIconDTOToEntity(iconExists, iconDTO, c.get()));
         return ApiHelper.iconUpdated().getBody();
     }
 
     @Override
     public boolean deleteById(Long id) {
+        Optional<Icon> i = repository.findById(id);
+        if (i.isPresent()) {
+            repository.deleteById(id);
+            return true;
+        }
         return false;
     }
 }

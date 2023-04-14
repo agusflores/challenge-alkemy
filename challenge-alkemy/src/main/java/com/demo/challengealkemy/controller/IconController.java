@@ -35,4 +35,12 @@ public class IconController {
         return service.updateIcon(id, iconDTO);
     }
 
+    @DeleteMapping("/delete-icon/{id}")
+    public ResponseBase updateIcon(@PathVariable Long id) {
+        if (service.deleteById(id)) {
+            return ApiHelper.iconDeleted().getBody();
+        }
+        return ApiHelper.invalidDeleteIconRequest().getBody();
+    }
+
 }

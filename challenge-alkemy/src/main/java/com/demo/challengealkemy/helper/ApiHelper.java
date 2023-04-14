@@ -56,6 +56,11 @@ public class ApiHelper {
         return new ResponseEntity<ResponseBase>(response, HttpStatus.OK);
     }
 
+    public static ResponseEntity<ResponseBase> iconDeleted() {
+        ResponseBase response = new ResponseBase("El icono se ha eliminado correctamente", "OK");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.OK);
+    }
+
     public static ResponseEntity<ResponseBase> notLoggedUser() {
         ResponseBase response = new ResponseBase("Los datos ingresados son incorrectos. Por favor, volver a intentarlo", "ERROR");
         return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
@@ -63,6 +68,16 @@ public class ApiHelper {
 
     public static ResponseEntity<ResponseBase> invalidCreateIconRequest() {
         ResponseBase response = new ResponseBase("Faltan datos para poder crear un nuevo Icono Geografico. Por favor, volver a intentarlo", "ERROR");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    public static ResponseEntity<ResponseBase> invalidUpdateIconRequest() {
+        ResponseBase response = new ResponseBase("Debe ingresar todos los datos del Icono para poder actualizarlo. Por favor, volver a intentarlo", "ERROR");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    public static ResponseEntity<ResponseBase> invalidDeleteIconRequest() {
+        ResponseBase response = new ResponseBase("El Icono no se ha podido eliminar. Por favor, volver a intentarlo", "ERROR");
         return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
     }
 
@@ -107,6 +122,16 @@ public class ApiHelper {
 
     public static Icon createIconDTOToEntity(CreateOrUpdateIconDTO dto, City city) {
         return new Icon(dto, city);
+    }
+
+    public static Icon updateIconDTOToEntity(Icon iconToSave, CreateOrUpdateIconDTO iconToUpdate, City c) {
+        iconToSave.setImage(iconToUpdate.getImage());
+        iconToSave.setDenomination(iconToUpdate.getDenomination());
+        iconToSave.setCreation(iconToUpdate.getCreation());
+        iconToSave.setHeight(iconToUpdate.getHeight());
+        iconToSave.setHistory(iconToUpdate.getHistory());
+        iconToSave.setCity(c);
+        return iconToSave;
     }
 
     public static User registerUserDtoToEntity(RegisterUserDTO dto)  {
