@@ -1,8 +1,10 @@
 package com.demo.challengealkemy.helper;
 
+import com.demo.challengealkemy.dto.icon.CreateIconDTO;
 import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.dto.user.LoginUserDTO;
 import com.demo.challengealkemy.dto.user.RegisterUserDTO;
+import com.demo.challengealkemy.model.City;
 import com.demo.challengealkemy.model.Icon;
 import com.demo.challengealkemy.model.User;
 import org.springframework.http.HttpStatus;
@@ -42,12 +44,41 @@ public class ApiHelper {
         return new ResponseEntity<ResponseBase>(response, HttpStatus.OK);
     }
 
+    public static ResponseEntity<ResponseBase> iconCreated() {
+        ResponseBase response = new ResponseBase("El icono se ha creado correctamente", "OK");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.OK);
+    }
+
     public static ResponseEntity<ResponseBase> notLoggedUser() {
         ResponseBase response = new ResponseBase("Los datos ingresados son incorrectos. Por favor, volver a intentarlo", "ERROR");
         return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
     }
+
+    public static ResponseEntity<ResponseBase> invalidCreateIconRequest() {
+        ResponseBase response = new ResponseBase("Faltan datos para poder crear un nuevo Icono Geografico. Por favor, volver a intentarlo", "ERROR");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    public static ResponseEntity<ResponseBase> invalidCityId() {
+        ResponseBase response = new ResponseBase("La ciudad ingresada es incorrecta. Por favor, volver a intentarlo", "ERROR");
+        return new ResponseEntity<ResponseBase>(response, HttpStatus.BAD_REQUEST);
+    }
+
     public static boolean validateRegisterRequest(RegisterUserDTO userDTO) {
         return (userDTO.getName() == null || userDTO.getAddress() == null || userDTO.getEmail() == null || userDTO.getPassword() == null);
+    }
+
+    public static boolean validateLoginRequest(LoginUserDTO userDTO) {
+        return (userDTO.getEmail() == null || userDTO.getPassword() == null);
+    }
+
+    public static boolean validateCreateIconRequest(CreateIconDTO iconDTO) {
+        return (iconDTO.getImage() == null
+                || iconDTO.getDenomination() == null
+                || iconDTO.getCreation() == null
+                || Float.isNaN(iconDTO.getHeight())
+                || iconDTO.getHistory() == null
+                || iconDTO.getCityId() == null);
     }
 
     public static List<IconDTO> IconEntityToIconDTO(List<Icon> list) {
@@ -58,8 +89,8 @@ public class ApiHelper {
         return listIconsDTO;
     }
 
-    public static boolean validateLoginRequest(LoginUserDTO userDTO) {
-        return (userDTO.getEmail() == null || userDTO.getPassword() == null);
+    public static Icon createIconDTOToEntity(CreateIconDTO dto, City city) {
+        return new Icon(dto, city);
     }
 
     public static User registerUserDtoToEntity(RegisterUserDTO dto)  {

@@ -1,5 +1,6 @@
 package com.demo.challengealkemy.model;
 
+import com.demo.challengealkemy.dto.icon.CreateIconDTO;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -14,7 +15,8 @@ public class Icon {
     private String denomination;
     private Date creation;
     private float height;
-    private float weight;
+
+    private String history;
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
@@ -22,13 +24,22 @@ public class Icon {
     public Icon() {
     }
 
-    public Icon(Long id, String image, String denomination, Date creation, float height, float weight, City city) {
+    public Icon(Long id, String image, String denomination, Date creation, float height, String history, City city) {
         this.id = id;
         this.image = image;
         this.denomination = denomination;
         this.creation = creation;
         this.height = height;
-        this.weight = weight;
+        this.history = history;
+        this.city = city;
+    }
+
+    public Icon(CreateIconDTO dto, City city) {
+        this.image = dto.getImage();
+        this.denomination = dto.getDenomination();
+        this.creation = dto.getCreation();
+        this.height = dto.getHeight();
+        this.history = dto.getHistory();
         this.city = city;
     }
 
@@ -72,12 +83,12 @@ public class Icon {
         this.height = height;
     }
 
-    public float getWeight() {
-        return weight;
+    public String getWeight() {
+        return history;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public void setWeight(String history) {
+        this.history = history;
     }
 
     public City getCity() {

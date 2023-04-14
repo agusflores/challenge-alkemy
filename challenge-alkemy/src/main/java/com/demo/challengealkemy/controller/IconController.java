@@ -1,14 +1,15 @@
 package com.demo.challengealkemy.controller;
 
 
+import com.demo.challengealkemy.dto.icon.CreateIconDTO;
 import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.helper.ApiHelper;
+import com.demo.challengealkemy.helper.ResponseBase;
 import com.demo.challengealkemy.service.interfaces.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,6 +23,11 @@ public class IconController {
     public ResponseEntity<List<IconDTO>> getIcons() {
         List<IconDTO> icons = ApiHelper.IconEntityToIconDTO(service.getAllIcons());
         return ResponseEntity.ok(icons);
+    }
+
+    @PostMapping("/create-icon")
+    public ResponseBase createIcon(@RequestBody CreateIconDTO iconDTO) {
+        return service.createIcon(iconDTO);
     }
 
 }
