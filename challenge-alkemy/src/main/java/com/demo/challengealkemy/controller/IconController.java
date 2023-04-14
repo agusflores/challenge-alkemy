@@ -1,7 +1,7 @@
 package com.demo.challengealkemy.controller;
 
 
-import com.demo.challengealkemy.dto.icon.CreateIconDTO;
+import com.demo.challengealkemy.dto.icon.CreateOrUpdateIconDTO;
 import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.helper.ApiHelper;
 import com.demo.challengealkemy.helper.ResponseBase;
@@ -26,12 +26,12 @@ public class IconController {
     }
 
     @PostMapping("/create-icon")
-    public ResponseBase createIcon(@RequestBody CreateIconDTO iconDTO) {
+    public ResponseBase createIcon(@RequestBody CreateOrUpdateIconDTO iconDTO) {
         return service.createIcon(iconDTO);
     }
 
     @PutMapping("/update-icon/{id}")
-    public ResponseBase updateIcon(@PathVariable Long id, @RequestBody CreateIconDTO iconDTO) {
+    public ResponseBase updateIcon(@PathVariable Long id, @RequestBody CreateOrUpdateIconDTO iconDTO) {
         return service.updateIcon(id, iconDTO);
     }
 

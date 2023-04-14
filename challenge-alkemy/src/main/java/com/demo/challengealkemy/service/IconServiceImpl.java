@@ -1,6 +1,6 @@
 package com.demo.challengealkemy.service;
 
-import com.demo.challengealkemy.dto.icon.CreateIconDTO;
+import com.demo.challengealkemy.dto.icon.CreateOrUpdateIconDTO;
 import com.demo.challengealkemy.helper.ApiHelper;
 import com.demo.challengealkemy.helper.ResponseBase;
 import com.demo.challengealkemy.model.City;
@@ -8,7 +8,6 @@ import com.demo.challengealkemy.model.Icon;
 import com.demo.challengealkemy.repository.CityRepository;
 import com.demo.challengealkemy.repository.IconRepository;
 import com.demo.challengealkemy.service.interfaces.IconService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,7 @@ public class IconServiceImpl implements IconService {
     }
 
     @Override
-    public ResponseBase createIcon(CreateIconDTO iconDTO) {
+    public ResponseBase createIcon(CreateOrUpdateIconDTO iconDTO) {
         if (ApiHelper.validateCreateIconRequest(iconDTO)) {
             return ApiHelper.invalidCreateIconRequest().getBody();
         }
@@ -49,7 +48,7 @@ public class IconServiceImpl implements IconService {
     }
 
     @Override
-    public ResponseBase updateIcon(Long iconId, CreateIconDTO iconDTO) {
+    public ResponseBase updateIcon(Long iconId, CreateOrUpdateIconDTO iconDTO) {
         Optional<City> c = cityRepository.findById(iconDTO.getCityId());
         if (!c.isPresent()) {
             return ApiHelper.invalidCityId().getBody();

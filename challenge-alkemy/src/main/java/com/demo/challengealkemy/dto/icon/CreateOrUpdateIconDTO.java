@@ -2,7 +2,7 @@ package com.demo.challengealkemy.dto.icon;
 
 import java.util.Date;
 
-public class CreateIconDTO {
+public class CreateOrUpdateIconDTO {
 
     private String image;
     private String denomination;
@@ -11,11 +11,11 @@ public class CreateIconDTO {
     private String history;
     private Long cityId;
 
-    public CreateIconDTO() {
+    public CreateOrUpdateIconDTO() {
 
     }
 
-    public CreateIconDTO(String image, String denomination, Date creation, float height, String history, Long cityId) {
+    public CreateOrUpdateIconDTO(String image, String denomination, Date creation, float height, String history, Long cityId) {
         this.image = image;
         this.denomination = denomination;
         this.creation = creation;

@@ -1,6 +1,6 @@
 package com.demo.challengealkemy.helper;
 
-import com.demo.challengealkemy.dto.icon.CreateIconDTO;
+import com.demo.challengealkemy.dto.icon.CreateOrUpdateIconDTO;
 import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.dto.user.LoginUserDTO;
 import com.demo.challengealkemy.dto.user.RegisterUserDTO;
@@ -86,7 +86,7 @@ public class ApiHelper {
         return (userDTO.getEmail() == null || userDTO.getPassword() == null);
     }
 
-    public static boolean validateCreateIconRequest(CreateIconDTO iconDTO) {
+    public static boolean validateCreateIconRequest(CreateOrUpdateIconDTO iconDTO) {
         return (iconDTO.getImage() == null
                 || iconDTO.getDenomination() == null
                 || iconDTO.getCreation() == null
@@ -105,7 +105,7 @@ public class ApiHelper {
         return listIconsDTO;
     }
 
-    public static Icon createIconDTOToEntity(CreateIconDTO dto, City city) {
+    public static Icon createIconDTOToEntity(CreateOrUpdateIconDTO dto, City city) {
         return new Icon(dto, city);
     }
 

@@ -1,6 +1,6 @@
 package com.demo.challengealkemy.model;
 
-import com.demo.challengealkemy.dto.icon.CreateIconDTO;
+import com.demo.challengealkemy.dto.icon.CreateOrUpdateIconDTO;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -34,7 +34,7 @@ public class Icon {
         this.city = city;
     }
 
-    public Icon(CreateIconDTO dto, City city) {
+    public Icon(CreateOrUpdateIconDTO dto, City city) {
         this.image = dto.getImage();
         this.denomination = dto.getDenomination();
         this.creation = dto.getCreation();
