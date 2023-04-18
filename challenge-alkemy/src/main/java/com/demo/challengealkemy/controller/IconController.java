@@ -5,12 +5,11 @@ import com.demo.challengealkemy.dto.icon.IconContinentDTO;
 import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.helper.ApiHelper;
 import com.demo.challengealkemy.helper.ResponseBase;
-import com.demo.challengealkemy.model.IconContinent;
 import com.demo.challengealkemy.service.interfaces.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -29,6 +28,24 @@ public class IconController {
     @GetMapping("/get-all-icons-with-details")
     public ResponseEntity<List<IconContinentDTO>> getAllIcons() {
         List<IconContinentDTO> icons = ApiHelper.IconContinentToIconContinentDTO(service.getAllIconsWithDetails());
+        return ResponseEntity.ok(icons);
+    }
+
+    @GetMapping("/get-icons-by-denomination")
+    public ResponseEntity<List<IconDTO>> getIconsByDenomination(@RequestParam(name = "denomination", required = true) String denomination) {
+        List<IconDTO> icons = ApiHelper.IconEntityToIconDTO(service.getByDenomination(denomination));
+        return ResponseEntity.ok(icons);
+    }
+
+    @GetMapping("/get-icons-by-creation-date")
+    public ResponseEntity<List<IconDTO>> getIconsByCreationDate(@RequestParam(name = "creationDate", required = true) String creationDate) throws ParseException {
+        List<IconDTO> icons = ApiHelper.IconEntityToIconDTO(service.getByCreationDate(creationDate));
+        return ResponseEntity.ok(icons);
+    }
+
+    @GetMapping("/get-icons-by-city-id/{id}")
+    public ResponseEntity<List<IconDTO>> getIconsByCreationDate(@PathVariable Long id) throws ParseException {
+        List<IconDTO> icons = ApiHelper.IconEntityToIconDTO(service.getBtCityId(id));
         return ResponseEntity.ok(icons);
     }
 

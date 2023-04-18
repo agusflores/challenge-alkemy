@@ -1,5 +1,7 @@
 package com.demo.challengealkemy.service.interfaces;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +14,10 @@ public interface IconService {
     List<Icon> getAllIcons();
 
     List<IconContinent> getAllIconsWithDetails();
+
+    List<Icon> getByDenomination(String denomination);
+    List<Icon> getByCreationDate(String creationDate) throws ParseException;
+    List<Icon> getBtCityId(Long id);
 
     Optional<Icon> getIconById(Long id);
     ResponseBase createIcon(CreateOrUpdateIconDTO iconDTO);

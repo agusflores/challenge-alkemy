@@ -13,6 +13,9 @@ import com.demo.challengealkemy.service.interfaces.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +37,24 @@ public class IconServiceImpl implements IconService {
     @Override
     public List<IconContinent> getAllIconsWithDetails() {
         return (List<IconContinent>) iconContinentRepository.findAll();
+    }
+
+    @Override
+    public List<Icon> getByDenomination(String denomination) {
+        return repository.findByDenomination(denomination);
+    }
+
+    @Override
+    public List<Icon> getByCreationDate(String creationDate) throws ParseException {
+        String dateString = creationDate;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(dateString);
+        return repository.findByCreation(date);
+    }
+
+    @Override
+    public List<Icon> getBtCityId(Long id) {
+        return repository.findByCityId(id);
     }
 
     @Override
