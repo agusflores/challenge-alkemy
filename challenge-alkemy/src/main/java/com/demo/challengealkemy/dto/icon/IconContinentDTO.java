@@ -1,5 +1,7 @@
 package com.demo.challengealkemy.dto.icon;
 
+import com.demo.challengealkemy.model.IconContinent;
+
 import java.util.Date;
 
 public class IconContinentDTO {
@@ -20,6 +22,15 @@ public class IconContinentDTO {
         this.iconHeight = iconHeight;
         this.iconHistory = iconHistory;
         this.iconContinent = iconContinent;
+    }
+
+    public IconContinentDTO(IconContinent iconContinent) {
+        this.iconImage = iconContinent.getImage();
+        this.iconDenomination = iconContinent.getDenomination();
+        this.iconCreation = iconContinent.getCreation();
+        this.iconHeight = iconContinent.getHeight();
+        this.iconHistory = iconContinent.getHistory();
+        this.iconContinent = iconContinent.getIconContinent();
     }
 
     public String getIconImage() {

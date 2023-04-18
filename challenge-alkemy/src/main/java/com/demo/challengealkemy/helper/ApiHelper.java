@@ -1,11 +1,13 @@
 package com.demo.challengealkemy.helper;
 
 import com.demo.challengealkemy.dto.icon.CreateOrUpdateIconDTO;
+import com.demo.challengealkemy.dto.icon.IconContinentDTO;
 import com.demo.challengealkemy.dto.icon.IconDTO;
 import com.demo.challengealkemy.dto.user.LoginUserDTO;
 import com.demo.challengealkemy.dto.user.RegisterUserDTO;
 import com.demo.challengealkemy.model.City;
 import com.demo.challengealkemy.model.Icon;
+import com.demo.challengealkemy.model.IconContinent;
 import com.demo.challengealkemy.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -119,6 +121,15 @@ public class ApiHelper {
         });
         return listIconsDTO;
     }
+
+    public static List<IconContinentDTO> IconContinentToIconContinentDTO(List<IconContinent> list) {
+        List<IconContinentDTO> listIconsDTO = new ArrayList<>();
+        list.stream().forEach(i -> {
+            listIconsDTO.add(new IconContinentDTO(i));
+        });
+        return listIconsDTO;
+    }
+
 
     public static Icon createIconDTOToEntity(CreateOrUpdateIconDTO dto, City city) {
         return new Icon(dto, city);

@@ -1,4 +1,4 @@
-package com.demo.challengealkemy.repository;
+package com.demo.challengealkemy.repository.interfaces;
 
 import com.demo.challengealkemy.model.User;
 import org.springframework.data.repository.CrudRepository;

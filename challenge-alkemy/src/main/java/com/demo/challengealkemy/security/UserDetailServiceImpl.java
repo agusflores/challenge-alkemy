@@ -1,7 +1,7 @@
 package com.demo.challengealkemy.security;
 
 import com.demo.challengealkemy.model.User;
-import com.demo.challengealkemy.repository.UserRepository;
+import com.demo.challengealkemy.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

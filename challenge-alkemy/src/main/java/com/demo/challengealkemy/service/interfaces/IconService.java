@@ -6,9 +6,13 @@ import java.util.Optional;
 import com.demo.challengealkemy.dto.icon.CreateOrUpdateIconDTO;
 import com.demo.challengealkemy.helper.ResponseBase;
 import com.demo.challengealkemy.model.Icon;
+import com.demo.challengealkemy.model.IconContinent;
 
 public interface IconService {
     List<Icon> getAllIcons();
+
+    List<IconContinent> getAllIconsWithDetails();
+
     Optional<Icon> getIconById(Long id);
     ResponseBase createIcon(CreateOrUpdateIconDTO iconDTO);
     ResponseBase updateIcon(Long iconId, CreateOrUpdateIconDTO iconDTO);

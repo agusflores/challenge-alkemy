@@ -1,7 +1,7 @@
 package com.demo.challengealkemy.service;
 
 import com.demo.challengealkemy.model.User;
-import com.demo.challengealkemy.repository.UserRepository;
+import com.demo.challengealkemy.repository.interfaces.UserRepository;
 import com.demo.challengealkemy.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

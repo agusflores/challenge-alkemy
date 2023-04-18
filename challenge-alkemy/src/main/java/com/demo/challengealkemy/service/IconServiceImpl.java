@@ -5,8 +5,10 @@ import com.demo.challengealkemy.helper.ApiHelper;
 import com.demo.challengealkemy.helper.ResponseBase;
 import com.demo.challengealkemy.model.City;
 import com.demo.challengealkemy.model.Icon;
-import com.demo.challengealkemy.repository.CityRepository;
-import com.demo.challengealkemy.repository.IconRepository;
+import com.demo.challengealkemy.model.IconContinent;
+import com.demo.challengealkemy.repository.interfaces.CityRepository;
+import com.demo.challengealkemy.repository.interfaces.IconContinentRepository;
+import com.demo.challengealkemy.repository.interfaces.IconRepository;
 import com.demo.challengealkemy.service.interfaces.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,17 @@ public class IconServiceImpl implements IconService {
     private IconRepository repository;
     @Autowired
     private CityRepository cityRepository;
-
+    @Autowired
+    private IconContinentRepository iconContinentRepository;
 
     @Override
     public List<Icon> getAllIcons() {
         return (List<Icon>) repository.findAll();
+    }
+
+    @Override
+    public List<IconContinent> getAllIconsWithDetails() {
+        return (List<IconContinent>) iconContinentRepository.findAll();
     }
 
     @Override
