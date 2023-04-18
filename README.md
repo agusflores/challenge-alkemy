@@ -2,7 +2,7 @@
 
 Tecnologias y herramientas utilizadas: 
 * Java
-* Hibernate
+* JPA Repository
 * Maven
 * JWT Security
 * MySQL
